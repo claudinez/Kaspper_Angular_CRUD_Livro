@@ -1,0 +1,36 @@
+<div>
+    <h2>Lista de Livros</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Livros</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Editora</th>
+          <th>Ano Publicação</th>
+          <th>ISBN</th>
+          <th>Emprestado</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aplica a classe 'emprestado' se o livro estiver emprestado -->
+        <tr *ngFor="let livro of livros" [ngClass]="{'emprestado': livro.emprestado === 'sim'}">
+          <td>{{ livro.idlivro }}</td>
+          <td>{{ livro.titulo }}</td>
+          <td>{{ livro.autor }}</td>
+          <td>{{ livro.editora }}</td>
+          <td>{{ livro.anopublicacao }}</td>
+          <td>{{ livro.isbn }}</td>
+          <td>{{ livro.emprestado }}</td>
+          <td>
+            <button (click)="deletarlivro(livro.idlivro)">Deletar</button>
+            <button [routerLink]="['/livro/edit', livro.idlivro]">Editar</button>
+            <button (click)="emprestarLivro(livro.idlivro)">Emprestar/Devolver</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button [routerLink]="['/livro/new']">Adicionar Novo Livro</button>
+  </div>
+  
